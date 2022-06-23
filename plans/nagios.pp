@@ -6,9 +6,17 @@
 # summary and parameters from the plan.
 # @summary A plan created with bolt plan new.
 # @param targets The targets to run on.
+# plan nagioskms::nagios (
+#   TargetSpec $nagios_host = "localhost"
+#   # TargetSpec $nagios_nrpe_client "localhost"
+# ) {
+  
+# }
+
 plan nagioskms::nagios (
   TargetSpec $nagios_host = "localhost"
-  TargetSpec $nagios_nrpe_client "localhost"
 ) {
-  
+  apply($nagios_host){
+    include nagioskms::nagios_host
+  }
 }

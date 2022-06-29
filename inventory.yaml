@@ -31,8 +31,8 @@ groups:
     - _plugin: aws_inventory
       region: ap-southeast-1
       filters:
-        - name: tag:Owner
-          values: [kms-nagios-web]
+        - name: tag:type
+          values: [nagios-kms-web]
       target_mapping:
           uri: public_ip_address
           config:
@@ -43,13 +43,14 @@ groups:
         user: centos
         private-key: "./ssh-key/kms.pem"
         host-key-check: false
+        run-as: root
   - name: nagios-kms-nrpe-client
     targets: 
     - _plugin: aws_inventory
       region: ap-southeast-1
       filters:
-        - name: tag:Owner
-          values: [kms-nagios-nrpe-client]
+        - name: tag:type
+          values: [nagios-kms-nrpe]
       target_mapping:
           uri: public_ip_address
           config:
@@ -60,3 +61,5 @@ groups:
         user: centos
         private-key: "./ssh-key/kms.pem"
         host-key-check: false
+        run-as: root
+        

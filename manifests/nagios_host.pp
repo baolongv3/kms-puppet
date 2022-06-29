@@ -1,5 +1,8 @@
-class nagioskms::nagios_host{
-  yumrepo{'nagios-repo':
-    url => "https://repo.nagios.com/nagios"
-  }
+class nagioskms::nagios_host{ 
+
+    file { '/etc/nagios' :
+      ensure => 'link',
+      target => '/usr/local/nagios'
+    }
+
 }

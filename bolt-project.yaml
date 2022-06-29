@@ -2,3 +2,12 @@
 name: nagioskms
 modules:
 - puppetlabs/aws_inventory
+- puppetlabs/puppet_agent
+- puppetlabs/yumrepo_core
+- thias/nagios
+plugin_hooks:
+  puppet_library:
+    plugin: task
+    task: puppet_agent::install
+    parameters:
+      version: 6.10.0

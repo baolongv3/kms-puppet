@@ -16,6 +16,8 @@
 plan nagioskms::nagios (
   TargetSpec $nagios_host = "localhost"
 ) {
+  $nagios_host.apply_prep
+
   apply($nagios_host){
     include nagioskms::nagios_host
   }

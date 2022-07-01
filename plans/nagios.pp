@@ -13,12 +13,17 @@
   
 # }
 
-plan nagioskms::nagios (
-  TargetSpec $nagios_host = "localhost"
-) {
-  $nagios_host.apply_prep
-
-  apply($nagios_host){
+plan nagioskms::nagios () {
+  $web_arr = get_targets('nagios-kms-web').map |$host| {$host.uri}
+  apply_prep('all')
+  apply('nagios-kms-web'){
     include nagioskms::nagios_host
+  }
+
+  apply('nagios-kms-nrpe'){
+    class{'nagioskms::web':
+      host_arr => $web_arr
+
+    }
   }
 }

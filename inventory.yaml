@@ -44,7 +44,7 @@ groups:
         private-key: "./ssh-key/kms.pem"
         host-key-check: false
         run-as: root
-  - name: nagios-kms-nrpe-client
+  - name: nagios-kms-nrpe
     targets: 
     - _plugin: aws_inventory
       region: ap-southeast-1

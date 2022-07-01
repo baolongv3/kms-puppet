@@ -11,16 +11,23 @@ class nagioskms::nagios_nrpe(
 
     nrpe::plugin {'check_nginx':
       ensure => 'present',
-      source => 'file:./scripts/check_nginx'
+      content => template('nagioskms/scripts/check_nginx')
     }
 
     nrpe::plugin{'check_disk_usage':
       ensure => 'present',
-      source => 'file:./scripts/check_disk_usage'
-
+      content => template('nagioskms/scripts/check_disk_usage')
     }
 
-    nrpe::command{
-      
+    nrpe::command{'check_nginx':
+      ensure => 'present',
+      command => 'check_nginx localhost'
     }
+
+    nrpe::command{'check_disk_usage':
+      ensure => 'present',
+      command => 'check_disk_usage -w 40 -c 60'
+    }
+
+
 }

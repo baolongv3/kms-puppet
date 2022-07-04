@@ -5,4 +5,4 @@ bolt-debug.log
 .plugin_cache.json
 .task_cache.json
 .rerun.json
-ssh-key/
+ssh-key/*

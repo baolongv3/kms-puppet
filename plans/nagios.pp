@@ -14,10 +14,13 @@
 # }
 
 plan nagioskms::nagios () {
-  $web_arr = get_targets('nagios-kms-web').map |$host| {$host.uri}
+  $web_arr = get_targets('nagios-kms-web').map |$host| {$host.name}
+  $nrpe_arr = get_targets('nagios-kms-nrpe').map |$host| {$host.name}
   apply_prep('all')
   apply('nagios-kms-web'){
-    include nagioskms::nagios_host
+    class{'nagioskms::nagios_host':
+      nrpe_arr => $nrpe_arr
+    }
   }
 
   apply('nagios-kms-nrpe'){

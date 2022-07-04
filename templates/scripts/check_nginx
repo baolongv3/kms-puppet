@@ -19,7 +19,7 @@ declare -A response_message=(
 )
 nginx_health_check(){
         RESPONSE_CODE=`curl -s -S -I ${URL} 2> /dev/null | grep "HTTP" | awk '{print $2}'`
-        if [ -z "$RESPONSE_CODE"]
+        if [ -z "$RESPONSE_CODE" ]
         then
                 echo "CRITICAL - ${RESPONSE_CODE} Server is not up, require immediate attention"
                 exit 2;

@@ -4,8 +4,8 @@ modules:
 - puppetlabs/aws_inventory
 - puppetlabs/puppet_agent
 - puppetlabs/yumrepo_core
-- thias/nagios
 - puppet/nrpe
+- puppetlabs/nagios_core
 plugin_hooks:
   puppet_library:
     plugin: task

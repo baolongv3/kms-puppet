@@ -8,7 +8,7 @@ class nagioskms::nagios_nrpe(
     class{'nrpe':
       allowed_hosts => $host_arr
     }
-
+    
     nrpe::plugin {'check_nginx':
       ensure => 'present',
       content => template('nagioskms/scripts/check_nginx')
